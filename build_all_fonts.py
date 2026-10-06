@@ -58,7 +58,7 @@ err_count = 0
 
 folders = sorted(by_folder.keys(), key=lambda f: int(re.match(r'^(\d+)', f).group(1)) if re.match(r'^(\d+)', f) else 9999)
 
-for folder in folders:
+for i, folder in enumerate(folders):
     entries = by_folder[folder]
     entry = pick_representative(entries)
     folder_label = re.sub(r'^\d+_', '', folder)
@@ -66,7 +66,7 @@ for folder in folders:
     ofl = entry['ofl']
     weight = entry['weight']
     path = entry['path']
-    css_family = f'AF_{re.sub(r"[^a-zA-Z0-9]", "_", folder_label)}'
+    css_family = f'AF_{i}'
 
     try:
         font_bytes = subset_font(path, SAMPLE_CHARS)
